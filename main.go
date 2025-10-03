@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
 	"zen-demo-go/database"
 	"zen-demo-go/routes"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -38,7 +37,6 @@ func main() {
 
 	// Setup API routes
 	routes.SetupTestRoutes(r)
-	routes.SetupCommandRoutes(r)
 	routes.SetupRequestRoutes(r)
 	routes.SetupFileRoutes(r)
 	routes.SetupPetRoutes(r)

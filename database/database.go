@@ -4,8 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/lib/pq"
 )
 
 var db *sql.DB
@@ -17,15 +18,29 @@ type Pet struct {
 
 func InitDatabase() {
 	var err error
-	db, err = sql.Open("sqlite3", ":memory:")
+
+	// Get PostgreSQL connection string from environment variable
+	// Format: postgres://username:password@hostname:port/database?sslmode=disable
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		dbURL = "postgres://postgres:postgres@localhost:5432/zen_demo_go?sslmode=disable"
+		log.Println("DATABASE_URL not set, using default:", dbURL)
+	}
+
+	db, err = sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatal("Failed to initialize database:", err)
+	}
+
+	// Test connection
+	if err = db.Ping(); err != nil {
+		log.Fatal("Failed to connect to database:", err)
 	}
 
 	// Create pets table
 	_, err = db.Exec(`
 		CREATE TABLE IF NOT EXISTS pets (
-			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			id SERIAL PRIMARY KEY,
 			name TEXT NOT NULL
 		)
 	`)
@@ -33,10 +48,18 @@ func InitDatabase() {
 		log.Fatal("Failed to create pets table:", err)
 	}
 
-	// Insert sample data
-	_, err = db.Exec(`INSERT INTO pets (name) VALUES ('Fluffy'), ('Buddy'), ('Max')`)
+	// Insert sample data (only if table is empty)
+	var count int
+	err = db.QueryRow("SELECT COUNT(*) FROM pets").Scan(&count)
 	if err != nil {
-		log.Fatal("Failed to insert sample data:", err)
+		log.Fatal("Failed to check pet count:", err)
+	}
+
+	if count == 0 {
+		_, err = db.Exec(`INSERT INTO pets (name) VALUES ('Fluffy'), ('Buddy'), ('Max')`)
+		if err != nil {
+			log.Fatal("Failed to insert sample data:", err)
+		}
 	}
 
 	log.Println("Database initialized successfully")

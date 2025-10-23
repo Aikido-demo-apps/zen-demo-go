@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/gin-gonic/gin"
 	"zen-demo-go/database"
 	"zen-demo-go/routes"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -40,6 +41,7 @@ func main() {
 	routes.SetupRequestRoutes(r)
 	routes.SetupFileRoutes(r)
 	routes.SetupPetRoutes(r)
+	routes.SetupExecuteRoutes(r)
 
 	r.Static("/css", "./static/public/css")
 	r.Static("/js", "./static/public/js")

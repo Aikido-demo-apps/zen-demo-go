@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,10 +22,14 @@ func readFile(c *gin.Context) {
 
 	content, err := os.ReadFile(fullPath)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"output":  fmt.Sprintf("Error: %s", err.Error()),
-		})
+		errMsg := err.Error()
+		if strings.Contains(errMsg, "No such file or directory") ||
+			strings.Contains(errMsg, "Is a directory") ||
+			strings.Contains(errMsg, "embedded null byte") {
+			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
+			return
+		}
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
 		return
 	}
 
@@ -36,19 +41,20 @@ func readFile2(c *gin.Context) {
 	fullPath := filepath.Join("static/blogs/", path)
 	absPath, err := filepath.Abs(fullPath)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"output":  fmt.Sprintf("Error: %s", err.Error()),
-		})
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 
 	content, err := os.ReadFile(absPath)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"output":  fmt.Sprintf("Error: %s", err.Error()),
-		})
+		errMsg := err.Error()
+		if strings.Contains(errMsg, "No such file or directory") ||
+			strings.Contains(errMsg, "Is a directory") ||
+			strings.Contains(errMsg, "embedded null byte") {
+			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
+			return
+		}
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
 		return
 	}
 

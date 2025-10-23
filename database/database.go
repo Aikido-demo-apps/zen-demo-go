@@ -12,8 +12,9 @@ import (
 var db *sql.DB
 
 type Pet struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID    int    `json:"pet_id"`
+	Name  string `json:"name"`
+	Owner string `json:"owner"`
 }
 
 func InitDatabase() {
@@ -40,8 +41,9 @@ func InitDatabase() {
 	// Create pets table
 	_, err = db.Exec(`
 		CREATE TABLE IF NOT EXISTS pets (
-			id SERIAL PRIMARY KEY,
-			name TEXT NOT NULL
+			pet_id SERIAL PRIMARY KEY,
+			pet_name TEXT NOT NULL,
+			owner TEXT NOT NULL
 		)
 	`)
 	if err != nil {
@@ -56,7 +58,7 @@ func InitDatabase() {
 	}
 
 	if count == 0 {
-		_, err = db.Exec(`INSERT INTO pets (name) VALUES ('Fluffy'), ('Buddy'), ('Max')`)
+		_, err = db.Exec(`INSERT INTO pets (pet_name, owner) VALUES ('Fluffy', 'Aikido Security'), ('Buddy', 'Aikido Security'), ('Max', 'Aikido Security')`)
 		if err != nil {
 			log.Fatal("Failed to insert sample data:", err)
 		}
@@ -66,7 +68,7 @@ func InitDatabase() {
 }
 
 func GetAllPets() []Pet {
-	rows, err := db.Query("SELECT id, name FROM pets")
+	rows, err := db.Query("SELECT pet_id, pet_name, owner FROM pets")
 	if err != nil {
 		log.Println("Error querying pets:", err)
 		return []Pet{}
@@ -76,7 +78,7 @@ func GetAllPets() []Pet {
 	var pets []Pet
 	for rows.Next() {
 		var pet Pet
-		if err := rows.Scan(&pet.ID, &pet.Name); err != nil {
+		if err := rows.Scan(&pet.ID, &pet.Name, &pet.Owner); err != nil {
 			log.Println("Error scanning pet:", err)
 			continue
 		}
@@ -87,11 +89,11 @@ func GetAllPets() []Pet {
 }
 
 func GetPetByID(id string) *Pet {
-	query := fmt.Sprintf("SELECT id, name FROM pets WHERE id = %s", id)
+	query := fmt.Sprintf("SELECT pet_id, pet_name, owner FROM pets WHERE pet_id = '%s'", id)
 	row := db.QueryRow(query)
 
 	var pet Pet
-	if err := row.Scan(&pet.ID, &pet.Name); err != nil {
+	if err := row.Scan(&pet.ID, &pet.Name, &pet.Owner); err != nil {
 		log.Println("Error getting pet by ID:", err)
 		return nil
 	}
@@ -100,7 +102,7 @@ func GetPetByID(id string) *Pet {
 }
 
 func CreatePetByName(name string) int {
-	query := fmt.Sprintf("INSERT INTO pets (name) VALUES ('%s')", name)
+	query := fmt.Sprintf("INSERT INTO pets (pet_name, owner) VALUES ('%s', 'Aikido Security')", name)
 	result, err := db.Exec(query)
 	if err != nil {
 		log.Println("Error creating pet:", err)

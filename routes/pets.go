@@ -24,6 +24,10 @@ func getAllPets(c *gin.Context) {
 func getPetByID(c *gin.Context) {
 	id := c.Param("id")
 	pet := database.GetPetByID(id)
+	if pet == nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Pet not found"})
+		return
+	}
 	c.JSON(http.StatusOK, pet)
 }
 

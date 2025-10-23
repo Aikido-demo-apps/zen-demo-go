@@ -12,6 +12,7 @@ import (
 // SetupRequestRoutes configures SSRF/request routes
 func SetupRequestRoutes(r *gin.Engine) {
 	r.POST("/api/request", makeRequest)
+	r.POST("/api/request2", makeRequest2)
 	r.POST("/api/request_different_port", makeRequestDifferentPort)
 }
 
@@ -20,27 +21,18 @@ func makeRequest(c *gin.Context) {
 		URL string `json:"url"`
 	}
 	if err := c.BindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"output":  "Invalid request",
-		})
+		c.String(http.StatusBadRequest, "Invalid request")
 		return
 	}
 
 	resp, err := http.Get(req.URL)
 	if err != nil {
 		errMsg := err.Error()
-		if strings.Contains(errMsg, "Zen has blocked a server-side request forgery") {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"success": false,
-				"output":  errMsg,
-			})
+		if strings.Contains(errMsg, "Failed to resolve") {
+			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
 			return
 		}
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"output":  fmt.Sprintf("Error: %s", errMsg),
-		})
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
 		return
 	}
 	defer resp.Body.Close()
@@ -57,10 +49,7 @@ func makeRequest(c *gin.Context) {
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"output":  string(body),
-	})
+	c.String(http.StatusOK, string(body))
 }
 
 func makeRequestDifferentPort(c *gin.Context) {
@@ -69,10 +58,7 @@ func makeRequestDifferentPort(c *gin.Context) {
 		Port int    `json:"port"`
 	}
 	if err := c.BindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"output":  "Invalid request",
-		})
+		c.String(http.StatusBadRequest, "Invalid request")
 		return
 	}
 
@@ -86,17 +72,11 @@ func makeRequestDifferentPort(c *gin.Context) {
 	resp, err := http.Get(urlWithPort)
 	if err != nil {
 		errMsg := err.Error()
-		if strings.Contains(errMsg, "Zen has blocked a server-side request forgery") {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"success": false,
-				"output":  errMsg,
-			})
+		if strings.Contains(errMsg, "Failed to resolve") {
+			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
 			return
 		}
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"output":  fmt.Sprintf("Error: %s", errMsg),
-		})
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
 		return
 	}
 	defer resp.Body.Close()
@@ -113,8 +93,41 @@ func makeRequestDifferentPort(c *gin.Context) {
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"output":  string(body),
-	})
+	c.String(http.StatusOK, string(body))
+}
+
+func makeRequest2(c *gin.Context) {
+	var req struct {
+		URL string `json:"url"`
+	}
+	if err := c.BindJSON(&req); err != nil {
+		c.String(http.StatusBadRequest, "Invalid request")
+		return
+	}
+
+	resp, err := http.Get(req.URL)
+	if err != nil {
+		errMsg := err.Error()
+		if strings.Contains(errMsg, "Failed to resolve") {
+			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
+			return
+		}
+		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		return
+	}
+	defer resp.Body.Close()
+
+	body := make([]byte, 0)
+	buf := make([]byte, 1024)
+	for {
+		n, err := resp.Body.Read(buf)
+		if n > 0 {
+			body = append(body, buf[:n]...)
+		}
+		if err != nil {
+			break
+		}
+	}
+
+	c.String(http.StatusOK, string(body))
 }

@@ -14,12 +14,7 @@ Or if already cloned:
 git submodule update --init --recursive
 ```
 
-2. Install dependencies:
-```bash
-go mod download
-```
-
-3. Run the application:
+2. Run the application:
 ```bash
 go run main.go
 ```

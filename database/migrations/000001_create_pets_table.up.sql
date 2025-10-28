@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS pets (
+  pet_id SERIAL PRIMARY KEY,
+  pet_name TEXT NOT NULL,
+  owner TEXT NOT NULL
+);

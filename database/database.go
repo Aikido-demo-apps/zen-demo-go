@@ -55,13 +55,13 @@ func InitDatabase() {
 		log.Fatal("Failed to create migration source:", err)
 	}
 
-	m, err := migrate.NewWithInstance("iofs", source, "zen_demo_go", driver)
+	m, err := migrate.NewWithInstance("iofs", source, "postgres", driver)
 	if err != nil {
 		log.Fatal("Failed to create migrate instance:", err)
 	}
 
 	err = m.Up()
-	if err != nil {
+	if err != nil && err != migrate.ErrNoChange {
 		log.Fatal("Failed to migrate database:", err)
 	}
 

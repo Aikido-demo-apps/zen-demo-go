@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"net/http/pprof"
 
 	"zen-demo-go/database"
 	"zen-demo-go/routes"
@@ -49,6 +52,22 @@ func main() {
 	r.GET("/aikido_logo.svg", func(c *gin.Context) {
 		c.File("./static/public/aikido_logo.svg")
 	})
+
+	// Setup pprof routes on localhost:6060
+	pprofMux := http.NewServeMux()
+	pprofMux.HandleFunc("/debug/pprof/", pprof.Index)
+	pprofMux.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
+	pprofMux.HandleFunc("/debug/pprof/profile", pprof.Profile)
+	pprofMux.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
+	pprofMux.HandleFunc("/debug/pprof/trace", pprof.Trace)
+
+	// Start pprof on localhost:6060 with its own mux
+	go func() {
+		log.Println("pprof available at http://localhost:6060/debug/pprof/")
+		if err := http.ListenAndServe("localhost:6060", pprofMux); err != nil {
+			log.Fatal("pprof server failed:", err)
+		}
+	}()
 
 	// Start server
 	fmt.Println("Server is running on http://localhost:3000")

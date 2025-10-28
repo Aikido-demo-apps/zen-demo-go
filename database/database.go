@@ -2,10 +2,14 @@ package database
 
 import (
 	"database/sql"
+	"embed"
 	"fmt"
 	"log"
 	"os"
 
+	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/postgres"
+	"github.com/golang-migrate/migrate/v4/source/iofs"
 	_ "github.com/lib/pq"
 )
 
@@ -16,6 +20,9 @@ type Pet struct {
 	Name  string `json:"name"`
 	Owner string `json:"owner"`
 }
+
+//go:embed migrations/*.sql
+var fs embed.FS
 
 func InitDatabase() {
 	var err error
@@ -38,30 +45,24 @@ func InitDatabase() {
 		log.Fatal("Failed to connect to database:", err)
 	}
 
-	// Create pets table
-	_, err = db.Exec(`
-		CREATE TABLE IF NOT EXISTS pets (
-			pet_id SERIAL PRIMARY KEY,
-			pet_name TEXT NOT NULL,
-			owner TEXT NOT NULL
-		)
-	`)
+	driver, err := postgres.WithInstance(db, &postgres.Config{})
 	if err != nil {
-		log.Fatal("Failed to create pets table:", err)
+		log.Fatal("Failed to create postgres driver:", err)
 	}
 
-	// Insert sample data (only if table is empty)
-	var count int
-	err = db.QueryRow("SELECT COUNT(*) FROM pets").Scan(&count)
+	source, err := iofs.New(fs, "migrations")
 	if err != nil {
-		log.Fatal("Failed to check pet count:", err)
+		log.Fatal("Failed to create migration source:", err)
 	}
 
-	if count == 0 {
-		_, err = db.Exec(`INSERT INTO pets (pet_name, owner) VALUES ('Fluffy', 'Aikido Security'), ('Buddy', 'Aikido Security'), ('Max', 'Aikido Security')`)
-		if err != nil {
-			log.Fatal("Failed to insert sample data:", err)
-		}
+	m, err := migrate.NewWithInstance("iofs", source, "zen_demo_go", driver)
+	if err != nil {
+		log.Fatal("Failed to create migrate instance:", err)
+	}
+
+	err = m.Up()
+	if err != nil {
+		log.Fatal("Failed to migrate database:", err)
 	}
 
 	log.Println("Database initialized successfully")

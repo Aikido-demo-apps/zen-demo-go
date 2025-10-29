@@ -12,8 +12,10 @@ RUN go mod download
 # Copy source code
 COPY . .
 
+RUN go install github.com/DataDog/orchestrion
+
 # Build the application
-RUN CGO_ENABLED=1 go build -o main .
+RUN CGO_ENABLED=1 go build -toolexec "orchestrion toolexec" -o main .
 
 # Runtime stage
 FROM alpine:latest

@@ -9,10 +9,13 @@ import (
 	"zen-demo-go/database"
 	"zen-demo-go/routes"
 
+	"github.com/AikidoSec/firewall-go/zen"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	zen.Protect()
+
 	r := gin.Default()
 
 	// Initialize database

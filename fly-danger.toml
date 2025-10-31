@@ -7,7 +7,7 @@ app = 'zen-demo-go-danger'
 primary_region = 'ams'
 
 [[vm]]
-  memory = '512mb'
+  memory = '2048mb'
   cpu_kind = 'performance'
   cpus = 1
 

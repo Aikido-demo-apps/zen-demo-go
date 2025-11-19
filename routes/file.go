@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,14 +21,15 @@ func readFile(c *gin.Context) {
 
 	content, err := os.ReadFile(fullPath)
 	if err != nil {
-		errMsg := err.Error()
-		if strings.Contains(errMsg, "No such file or directory") ||
-			strings.Contains(errMsg, "Is a directory") ||
-			strings.Contains(errMsg, "embedded null byte") {
-			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
+		if os.IsNotExist(err) {
+			c.String(http.StatusNotFound, "File not found")
 			return
 		}
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		if os.IsPermission(err) {
+			c.String(http.StatusForbidden, "Access denied")
+			return
+		}
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 
@@ -47,14 +47,15 @@ func readFile2(c *gin.Context) {
 
 	content, err := os.ReadFile(absPath)
 	if err != nil {
-		errMsg := err.Error()
-		if strings.Contains(errMsg, "No such file or directory") ||
-			strings.Contains(errMsg, "Is a directory") ||
-			strings.Contains(errMsg, "embedded null byte") {
-			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
+		if os.IsNotExist(err) {
+			c.String(http.StatusNotFound, "File not found")
 			return
 		}
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		if os.IsPermission(err) {
+			c.String(http.StatusForbidden, "Access denied")
+			return
+		}
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 

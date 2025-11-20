@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 	"os/exec"
 
@@ -22,21 +23,29 @@ func executeCommandPost(c *gin.Context) {
 		return
 	}
 
-	result := executeShellCommand(req.UserCommand)
+	result, err := executeShellCommand(req.UserCommand)
+	if err != nil {
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err))
+		return
+	}
 	c.String(http.StatusOK, result)
 }
 
 func executeCommandGet(c *gin.Context) {
 	command := c.Param("command")
-	result := executeShellCommand(command)
+	result, err := executeShellCommand(command)
+	if err != nil {
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err))
+		return
+	}
 	c.String(http.StatusOK, result)
 }
 
-func executeShellCommand(command string) string {
+func executeShellCommand(command string) (string, error) {
 	cmd := exec.Command("sh", "-c", command)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		return string(output)
+		return "", err
 	}
-	return string(output)
+	return string(output), nil
 }

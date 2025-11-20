@@ -9,10 +9,10 @@ WORKDIR /app
 COPY go.mod go.sum* ./
 RUN go mod download
 
+RUN go install github.com/DataDog/orchestrion
+
 # Copy source code
 COPY . .
-
-RUN go install github.com/DataDog/orchestrion
 
 # Build the application
 RUN CGO_ENABLED=1 go build -toolexec "orchestrion toolexec" -o main .

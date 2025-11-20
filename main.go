@@ -17,6 +17,7 @@ func main() {
 	zen.Protect()
 
 	r := gin.Default()
+	r.ContextWithFallback = true
 
 	// Initialize database
 	database.InitDatabase()

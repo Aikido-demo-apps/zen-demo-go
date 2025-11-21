@@ -22,6 +22,13 @@ func main() {
 	// Initialize database
 	database.InitDatabase()
 
+	r.Use(func(c *gin.Context) {
+		if c.GetHeader("user") != "" {
+			zen.SetUser(c, c.GetHeader("user"), "John Doe")
+		}
+	})
+	r.Use(BlockingMiddleware())
+
 	// HTML routes
 	r.GET("/", func(c *gin.Context) {
 		c.File("./static/index.html")
@@ -76,4 +83,28 @@ func main() {
 	// Start server
 	fmt.Println("Server is running on http://localhost:3000")
 	r.Run(":3000")
+}
+
+func BlockingMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		blockResult := zen.ShouldBlockRequest(c)
+
+		if blockResult != nil {
+			if blockResult.Type == "rate-limited" {
+				message := "You are rate limited by Zen."
+				if blockResult.Trigger == "ip" {
+					message += " (Your IP: " + *blockResult.IP + ")"
+				}
+				c.String(http.StatusTooManyRequests, message)
+				c.Abort() // Stop further processing
+				return
+			} else if blockResult.Type == "blocked" {
+				c.String(http.StatusForbidden, "You are blocked by Zen.")
+				c.Abort() // Stop further processing
+				return
+			}
+		}
+
+		c.Next()
+	}
 }

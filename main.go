@@ -67,13 +67,13 @@ func main() {
 
 	// Start pprof on localhost:6060 with its own mux
 	go func() {
-		log.Println("pprof available at http://localhost:6060/debug/pprof/")
-		if err := http.ListenAndServe("localhost:6060", pprofMux); err != nil {
+		log.Println("pprof available at http://0.0.0.0:6060/debug/pprof/")
+		if err := http.ListenAndServe(":6060", pprofMux); err != nil {
 			log.Fatal("pprof server failed:", err)
 		}
 	}()
 
 	// Start server
-	fmt.Println("Server is running on http://localhost:3000")
+	fmt.Println("Server is running on http://0.0.0.0:3000")
 	r.Run(":3000")
 }

@@ -31,4 +31,9 @@ COPY --from=builder /app/static ./static
 
 EXPOSE 3000
 
+RUN apk add --no-cache shadow && \
+    useradd -U -u 1000 appuser && \
+    chown -R 1000:1000 /app
+USER 1000
+
 CMD ["./main"]

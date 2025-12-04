@@ -23,8 +23,12 @@ func main() {
 	database.InitDatabase()
 
 	r.Use(func(c *gin.Context) {
-		if c.GetHeader("user") != "" {
-			zen.SetUser(c, c.GetHeader("user"), "John Doe")
+		if user := c.GetHeader("user"); user != "" {
+			zen.SetUser(c, user, "John Doe")
+		}
+
+		if group := c.GetHeader("RateLimitingGroupID"); group != "" {
+			zen.SetRateLimitGroup(c, group)
 		}
 	})
 	r.Use(BlockingMiddleware())

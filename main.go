@@ -27,7 +27,8 @@ func main() {
 			zen.SetUser(c, user, "John Doe")
 		}
 
-		if group := c.GetHeader("RateLimitingGroupID"); group != "" {
+		group, err := c.Cookie("RateLimitingGroupID")
+		if err == nil {
 			zen.SetRateLimitGroup(c, group)
 		}
 	})

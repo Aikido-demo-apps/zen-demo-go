@@ -1,5 +1,5 @@
-github.com/AikidoSec/firewall-go v0.0.0-20251201120254-175871356fca h1:vdJ99ALf2RqibudAq3lCoDY4I7xRBFDdo2rgCZq4DHY=
-github.com/AikidoSec/firewall-go v0.0.0-20251201120254-175871356fca/go.mod h1:zy5kukgEYamh75TnVQe/Hb67PVL+d5NwSK07fod2Zug=
+github.com/AikidoSec/firewall-go v0.0.0-20251205114141-61b1d26d0a58 h1:FgRLPdzhV6tg8CqHaawQtmY1xs5uXHK4dL4EVH4p2W0=
+github.com/AikidoSec/firewall-go v0.0.0-20251205114141-61b1d26d0a58/go.mod h1:zy5kukgEYamh75TnVQe/Hb67PVL+d5NwSK07fod2Zug=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161/go.mod h1:xomTg63KZ2rFqZQzSB4Vz2SUXa1BpHTVz9L5PTmPC4E=
 github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.72.3 h1:ZMVdP0k+iVih8JWDp18hh0vdopC00ZhmRZAzhfLV90A=

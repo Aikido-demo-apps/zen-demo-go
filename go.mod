@@ -1,9 +1,9 @@
 module zen-demo-go
 
-go 1.24.0
+go 1.24.2
 
 require (
-	github.com/AikidoSec/firewall-go v0.0.0-20251205171617-f190e64dbdee
+	github.com/AikidoSec/firewall-go v0.0.0-20251216164615-a21255f60e17
 	github.com/DataDog/orchestrion v1.6.1
 	github.com/gin-gonic/gin v1.11.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
@@ -99,8 +99,8 @@ require (
 	github.com/polyfloyd/go-errorlint v1.8.1-0.20250906200200-9b25878c4dea // indirect
 	github.com/power-devops/perfstat v0.0.0-20240221224432-82ca36839d55 // indirect
 	github.com/puzpuzpuz/xsync/v3 v3.5.1 // indirect
-	github.com/quic-go/qpack v0.5.1 // indirect
-	github.com/quic-go/quic-go v0.55.0 // indirect
+	github.com/quic-go/qpack v0.6.0 // indirect
+	github.com/quic-go/quic-go v0.57.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rs/zerolog v1.34.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect

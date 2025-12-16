@@ -2,6 +2,8 @@ github.com/AikidoSec/firewall-go v0.0.0-20251205114141-61b1d26d0a58 h1:FgRLPdzhV
 github.com/AikidoSec/firewall-go v0.0.0-20251205114141-61b1d26d0a58/go.mod h1:zy5kukgEYamh75TnVQe/Hb67PVL+d5NwSK07fod2Zug=
 github.com/AikidoSec/firewall-go v0.0.0-20251205171617-f190e64dbdee h1:tllxy/gIRUFFSzlxAJetHqOd9esYRiN5Q0piRgeIgSQ=
 github.com/AikidoSec/firewall-go v0.0.0-20251205171617-f190e64dbdee/go.mod h1:zy5kukgEYamh75TnVQe/Hb67PVL+d5NwSK07fod2Zug=
+github.com/AikidoSec/firewall-go v0.0.0-20251216164615-a21255f60e17 h1:9jPqPD1Bdw5SjtrIF9cehrOqkEQow+DtDV0XlOs/Ws0=
+github.com/AikidoSec/firewall-go v0.0.0-20251216164615-a21255f60e17/go.mod h1:vvwEDKoEDNzi5SSxQ7fbEtNKzbIcVNZHjbCAY032A9g=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161/go.mod h1:xomTg63KZ2rFqZQzSB4Vz2SUXa1BpHTVz9L5PTmPC4E=
 github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.72.3 h1:ZMVdP0k+iVih8JWDp18hh0vdopC00ZhmRZAzhfLV90A=
@@ -272,8 +274,12 @@ github.com/puzpuzpuz/xsync/v3 v3.5.1 h1:GJYJZwO6IdxN/IKbneznS6yPkVC+c3zyY/j19c++
 github.com/puzpuzpuz/xsync/v3 v3.5.1/go.mod h1:VjzYrABPabuM4KyBh1Ftq6u8nhwY5tBPKP9jpmh0nnA=
 github.com/quic-go/qpack v0.5.1 h1:giqksBPnT/HDtZ6VhtFKgoLOWmlyo9Ei6u9PqzIMbhI=
 github.com/quic-go/qpack v0.5.1/go.mod h1:+PC4XFrEskIVkcLzpEkbLqq1uCoxPhQuvK5rH1ZgaEg=
+github.com/quic-go/qpack v0.6.0 h1:g7W+BMYynC1LbYLSqRt8PBg5Tgwxn214ZZR34VIOjz8=
+github.com/quic-go/qpack v0.6.0/go.mod h1:lUpLKChi8njB4ty2bFLX2x4gzDqXwUpaO1DP9qMDZII=
 github.com/quic-go/quic-go v0.55.0 h1:zccPQIqYCXDt5NmcEabyYvOnomjs8Tlwl7tISjJh9Mk=
 github.com/quic-go/quic-go v0.55.0/go.mod h1:DR51ilwU1uE164KuWXhinFcKWGlEjzys2l8zUl5Ss1U=
+github.com/quic-go/quic-go v0.57.1 h1:25KAAR9QR8KZrCZRThWMKVAwGoiHIrNbT72ULHTuI10=
+github.com/quic-go/quic-go v0.57.1/go.mod h1:ly4QBAjHA2VhdnxhojRsCUOeJwKYg+taDlos92xb1+s=
 github.com/richardartoul/molecule v1.0.1-0.20240531184615-7ca0df43c0b3 h1:4+LEVOB87y175cLJC/mbsgKmoDOjrBldtXvioEy96WY=
 github.com/richardartoul/molecule v1.0.1-0.20240531184615-7ca0df43c0b3/go.mod h1:vl5+MqJ1nBINuSsUI2mGgH79UweUT/B5Fy8857PqyyI=
 github.com/rivo/uniseg v0.4.7 h1:WUdvkW8uEhrYfLC4ZzdpI2ztxP1I582+49Oc5Mq64VQ=

@@ -3,7 +3,7 @@ module zen-demo-go
 go 1.24.2
 
 require (
-	github.com/AikidoSec/firewall-go v0.0.0-20251216164615-a21255f60e17
+	github.com/AikidoSec/firewall-go v0.0.0-20251222104727-cd7a0721dbab
 	github.com/DataDog/orchestrion v1.6.1
 	github.com/gin-gonic/gin v1.11.0
 	github.com/golang-migrate/migrate/v4 v4.19.0

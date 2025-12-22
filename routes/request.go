@@ -27,12 +27,7 @@ func makeRequest(c *gin.Context) {
 
 	resp, err := http.Get(req.URL)
 	if err != nil {
-		errMsg := err.Error()
-		if strings.Contains(errMsg, "Failed to resolve") {
-			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
-			return
-		}
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 	defer resp.Body.Close()
@@ -59,12 +54,7 @@ func makeRequestDifferentPort(c *gin.Context) {
 
 	resp, err := http.Get(urlWithPort)
 	if err != nil {
-		errMsg := err.Error()
-		if strings.Contains(errMsg, "Failed to resolve") {
-			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
-			return
-		}
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 	defer resp.Body.Close()
@@ -95,12 +85,7 @@ func makeRequest2(c *gin.Context) {
 
 	resp, err := http.Get(req.URL)
 	if err != nil {
-		errMsg := err.Error()
-		if strings.Contains(errMsg, "Failed to resolve") {
-			c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", errMsg))
-			return
-		}
-		c.String(http.StatusBadRequest, fmt.Sprintf("Error: %s", errMsg))
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 	defer resp.Body.Close()

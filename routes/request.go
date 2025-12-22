@@ -37,19 +37,7 @@ func makeRequest(c *gin.Context) {
 	}
 	defer resp.Body.Close()
 
-	body := make([]byte, 0)
-	buf := make([]byte, 1024)
-	for {
-		n, err := resp.Body.Read(buf)
-		if n > 0 {
-			body = append(body, buf[:n]...)
-		}
-		if err != nil {
-			break
-		}
-	}
-
-	c.String(http.StatusOK, string(body))
+	c.DataFromReader(http.StatusOK, resp.ContentLength, resp.Header.Get("Content-Type"), resp.Body, nil)
 }
 
 func makeRequestDifferentPort(c *gin.Context) {

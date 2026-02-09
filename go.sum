@@ -1,5 +1,5 @@
-github.com/AikidoSec/firewall-go v0.0.0-20260209125315-1af54c7c91c9 h1:dyrDeJZ7jH9ucOl9W8I/vudgqYUQptyx1H798Qs+MSM=
-github.com/AikidoSec/firewall-go v0.0.0-20260209125315-1af54c7c91c9/go.mod h1:mMC6Fg6eXJTwrFSUXKTPAqV1lVShROJfGIGm3ci+iY4=
+github.com/AikidoSec/firewall-go v0.1.0 h1:J0wT3nxgjJ5U4CB2r1oVNauJs6DgDLW4chALojrp9pU=
+github.com/AikidoSec/firewall-go v0.1.0/go.mod h1:mMC6Fg6eXJTwrFSUXKTPAqV1lVShROJfGIGm3ci+iY4=
 github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v0.0.0-20260209125315-1af54c7c91c9 h1:jhGAt+SgY95rClDl7DM4xkapv5TsAnAZCSIicY4dIHw=
 github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v0.0.0-20260209125315-1af54c7c91c9/go.mod h1:fOge78htiBeOinmhJlTt8QzMxUKugPs+g8EtOhrBmGg=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=

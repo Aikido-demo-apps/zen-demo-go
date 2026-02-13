@@ -3,7 +3,6 @@ package routes
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -38,7 +37,7 @@ func makeRequest(c *gin.Context) {
 func makeRequestDifferentPort(c *gin.Context) {
 	var req struct {
 		URL  string `json:"url"`
-		Port int    `json:"port"`
+		Port string `json:"port"`
 	}
 	if err := c.BindJSON(&req); err != nil {
 		c.String(http.StatusBadRequest, "Invalid request")
@@ -48,7 +47,7 @@ func makeRequestDifferentPort(c *gin.Context) {
 	// Replace port in URL
 	parts := strings.Split(req.URL, ":")
 	if len(parts) >= 3 {
-		parts[len(parts)-1] = strconv.Itoa(req.Port)
+		parts[len(parts)-1] = req.Port
 	}
 	urlWithPort := strings.Join(parts, ":")
 

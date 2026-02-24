@@ -3,8 +3,8 @@ module zen-demo-go
 go 1.24.2
 
 require (
-	github.com/AikidoSec/firewall-go v0.2.0
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v0.2.0
+	github.com/AikidoSec/firewall-go v0.3.0-beta.1
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v0.3.0-beta.1
 	github.com/gin-gonic/gin v1.11.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
 	github.com/lib/pq v1.10.9

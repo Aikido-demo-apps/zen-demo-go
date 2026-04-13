@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/pprof"
+	"strconv"
 
 	"zen-demo-go/database"
 	"zen-demo-go/routes"
@@ -24,7 +25,19 @@ func main() {
 
 	r.Use(func(c *gin.Context) {
 		if user := c.GetHeader("user"); user != "" {
-			zen.SetUser(c, user, "John Doe")
+			id, err := strconv.Atoi(user)
+			if err == nil {
+				zen.SetUser(c, strconv.Itoa(id), getName(id))
+			}
+		} else {
+			userId := c.GetHeader("X-User-ID")
+			userName := c.GetHeader("X-User-Name")
+			if userId != "" && userName != "" {
+				id, err := strconv.Atoi(userId)
+				if err == nil {
+					zen.SetUser(c, strconv.Itoa(id), userName)
+				}
+			}
 		}
 
 		group, err := c.Cookie("RateLimitingGroupID")
@@ -88,6 +101,14 @@ func main() {
 	// Start server
 	fmt.Println("Server is running on http://0.0.0.0:3000")
 	r.Run(":3000")
+}
+
+func getName(number int) string {
+	names := []string{"Hans", "Pablo", "Samuel", "Timo", "Tudor", "Willem", "Wout", "Yannis"}
+	if number < 0 {
+		number = -number
+	}
+	return names[number%len(names)]
 }
 
 func BlockingMiddleware() gin.HandlerFunc {

@@ -1,7 +1,7 @@
-github.com/AikidoSec/firewall-go v1.2.0-beta.1 h1:aqSBywCQuHi1e5qsJ8y6Or0MhMd29L42Ps+Roo+EOkQ=
-github.com/AikidoSec/firewall-go v1.2.0-beta.1/go.mod h1:gTlveLbt0A0Jg0xs2zbobQpcx8SBtH2Hdl78aEC5Bc0=
-github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.0-beta.1 h1:iL+UqgEXAYLNIcTqxqIqy+MlwKHWUIrmC9ZA60TN/Lo=
-github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.0-beta.1/go.mod h1:3Z4567ZOktBy30nPvePHVfSbtnpX5n2WRVL6SihaI2A=
+github.com/AikidoSec/firewall-go v1.2.0 h1:aq5y7WUedTc67xevZooI7Uev26+fPnksM+qzsrVQgdk=
+github.com/AikidoSec/firewall-go v1.2.0/go.mod h1:gTlveLbt0A0Jg0xs2zbobQpcx8SBtH2Hdl78aEC5Bc0=
+github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.0 h1:L7UvkPZHTlDeSJAO7LvlzuGDFTTp9lJEqzkw2sNBK4s=
+github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.0/go.mod h1:nGaO2h67QLvNQgQD1TyQrtKXQ/Kz/rbJt78RdjOj4oc=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161/go.mod h1:xomTg63KZ2rFqZQzSB4Vz2SUXa1BpHTVz9L5PTmPC4E=
 github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERoyfY=
@@ -128,8 +128,8 @@ github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.3.1 h1:waO7eEiFDwidsBN6agj1vJQ4AG7lh2yqXyOXqhgQuyY=
 github.com/ugorji/go/codec v1.3.1/go.mod h1:pRBVtBSKl77K30Bv8R2P+cLSGaTtex6fsA2Wjqmfxj4=
-go.mongodb.org/mongo-driver/v2 v2.5.0 h1:yXUhImUjjAInNcpTcAlPHiT7bIXhshCTL3jVBkF3xaE=
-go.mongodb.org/mongo-driver/v2 v2.5.0/go.mod h1:yOI9kBsufol30iFsl1slpdq1I0eHPzybRWdyYUs8K/0=
+go.mongodb.org/mongo-driver/v2 v2.5.1 h1:j2U/Qp+wvueSpqitLCSZPT/+ZpVc1xzuwdHWwl7d8ro=
+go.mongodb.org/mongo-driver/v2 v2.5.1/go.mod h1:yOI9kBsufol30iFsl1slpdq1I0eHPzybRWdyYUs8K/0=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.62.0 h1:Hf9xI/XLML9ElpiHVDNwvqI0hIFlzV8dgIr35kV1kRU=

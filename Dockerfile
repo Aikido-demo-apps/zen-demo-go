@@ -10,7 +10,7 @@ WORKDIR /app
 COPY go.mod go.sum* ./
 RUN go mod download
 
-RUN go install github.com/AikidoSec/firewall-go/cmd/zen-go@v1.0.0
+RUN go install github.com/AikidoSec/firewall-go/cmd/zen-go@513adbaaadf14268854879412237a53bfdbb75bc
 
 # Copy source code
 COPY . .

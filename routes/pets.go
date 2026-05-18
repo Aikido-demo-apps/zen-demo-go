@@ -13,6 +13,7 @@ func SetupPetRoutes(r *gin.Engine) {
 	r.GET("/api/pets/", getAllPets)
 	r.GET("/api/pets/:id", getPetByID)
 	r.POST("/api/create", createPet)
+	r.POST("/api/create-form", createPetForm)
 	r.GET("/clear", clearPets)
 }
 
@@ -41,6 +42,22 @@ func createPet(c *gin.Context) {
 	}
 
 	rowsCreated := database.CreatePetByName(req.Name)
+	if rowsCreated == -1 {
+		c.String(http.StatusInternalServerError, "Database error occurred")
+		return
+	}
+
+	c.String(http.StatusOK, "Success!")
+}
+
+func createPetForm(c *gin.Context) {
+	name := c.PostForm("name")
+	if name == "" {
+		c.String(http.StatusBadRequest, "Invalid request")
+		return
+	}
+
+	rowsCreated := database.CreatePetByName(name)
 	if rowsCreated == -1 {
 		c.String(http.StatusInternalServerError, "Database error occurred")
 		return

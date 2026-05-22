@@ -15,36 +15,25 @@ func SetupFileRoutes(r *gin.Engine) {
 	r.GET("/api/read2", readFile2)
 }
 
-type fileResult struct {
-	content []byte
-	err     error
-}
-
 func readFile(c *gin.Context) {
 	path := c.Query("path")
 	fullPath := filepath.Join("static/blogs/", path)
 
-	ch := make(chan fileResult, 1)
-	go func() {
-		content, err := os.ReadFile(fullPath)
-		ch <- fileResult{content, err}
-	}()
-
-	result := <-ch
-	if result.err != nil {
-		if os.IsNotExist(result.err) {
+	content, err := os.ReadFile(fullPath)
+	if err != nil {
+		if os.IsNotExist(err) {
 			c.String(http.StatusNotFound, "File not found")
 			return
 		}
-		if os.IsPermission(result.err) {
+		if os.IsPermission(err) {
 			c.String(http.StatusForbidden, "Access denied")
 			return
 		}
-		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", result.err.Error()))
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 
-	c.String(http.StatusOK, string(result.content))
+	c.String(http.StatusOK, string(content))
 }
 
 func readFile2(c *gin.Context) {
@@ -56,25 +45,19 @@ func readFile2(c *gin.Context) {
 		return
 	}
 
-	ch := make(chan fileResult, 1)
-	go func() {
-		content, err := os.ReadFile(absPath)
-		ch <- fileResult{content, err}
-	}()
-
-	result := <-ch
-	if result.err != nil {
-		if os.IsNotExist(result.err) {
+	content, err := os.ReadFile(absPath)
+	if err != nil {
+		if os.IsNotExist(err) {
 			c.String(http.StatusNotFound, "File not found")
 			return
 		}
-		if os.IsPermission(result.err) {
+		if os.IsPermission(err) {
 			c.String(http.StatusForbidden, "Access denied")
 			return
 		}
-		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", result.err.Error()))
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error: %s", err.Error()))
 		return
 	}
 
-	c.String(http.StatusOK, string(result.content))
+	c.String(http.StatusOK, string(content))
 }

@@ -3,8 +3,8 @@ module zen-demo-go
 go 1.25.0
 
 require (
-	github.com/AikidoSec/firewall-go v1.2.5
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.5
+	github.com/AikidoSec/firewall-go v1.2.6-beta.1
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.6-beta.1
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
 	github.com/lib/pq v1.10.9
@@ -22,11 +22,9 @@ require (
 	github.com/go-playground/validator/v10 v10.30.3 // indirect
 	github.com/goccy/go-json v0.10.6 // indirect
 	github.com/goccy/go-yaml v1.19.2 // indirect
-	github.com/gopherjs/gopherjs v1.20.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-isatty v0.0.22 // indirect
@@ -39,7 +37,7 @@ require (
 	github.com/tetratelabs/wazero v1.12.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.3.1 // indirect
-	go.mongodb.org/mongo-driver/v2 v2.6.0 // indirect
+	go.mongodb.org/mongo-driver/v2 v2.6.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.62.0 // indirect
 	go.opentelemetry.io/otel/metric v1.39.0 // indirect
 	go.opentelemetry.io/otel/trace v1.39.0 // indirect

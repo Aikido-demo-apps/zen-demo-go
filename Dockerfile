@@ -10,13 +10,11 @@ WORKDIR /app
 COPY go.mod go.sum* ./
 RUN go mod download
 
-RUN go install github.com/AikidoSec/firewall-go/cmd/zen-go@v1.0.3
-
 # Copy source code
 COPY . .
 
 # Build the application
-RUN CGO_ENABLED=1 go build -toolexec "zen-go toolexec" -o main .
+RUN CGO_ENABLED=1 go tool zen-go go build -o main .
 
 # Runtime stage
 FROM alpine:3.22.2@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412

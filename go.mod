@@ -11,7 +11,7 @@ require (
 )
 
 require (
-	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7-beta.1 // indirect
+	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bytedance/gopkg v0.1.4 // indirect
 	github.com/bytedance/sonic v1.15.2 // indirect

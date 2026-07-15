@@ -1,7 +1,7 @@
 github.com/AikidoSec/firewall-go v1.2.7-0.20260713102531-f240d35b95d1 h1:rDW3QfE1w8ICqQSvY4+/ySqcO9qND4La91s+WfhnQ4Y=
 github.com/AikidoSec/firewall-go v1.2.7-0.20260713102531-f240d35b95d1/go.mod h1:n6iWrsn30DVj6yRjLWDnSJQ86b57qGzo9h3Q/UmvKRk=
-github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7-beta.1 h1:Wn2BzAbVcwiNdHEFOxwrLAdtY0NttF3e8ThIGwvBCGE=
-github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7-beta.1/go.mod h1:FEBc6JEXfrmm+Z+hLU0L82DEshzvIu3o2R+BHutGJok=
+github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7 h1:+s2Ak4mecWNzbU5QTB4Zq9s1ON4xpI0A1MnwaGb+OjQ=
+github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.7/go.mod h1:FEBc6JEXfrmm+Z+hLU0L82DEshzvIu3o2R+BHutGJok=
 github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.7-beta.1 h1:QylMivvp2zRFSwYdyFn81lJIrZVfpNz/H6Wd1K7QZI0=
 github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.7-beta.1/go.mod h1:9q5Ugan1A2Qg6wktp1mQW6tbsMxxRqhIkgG845yrYTg=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=

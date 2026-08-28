@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'zen-go'
+app = 'zen-demo-go'
 primary_region = 'ams'
 
 [build]
@@ -13,12 +13,12 @@ primary_region = 'ams'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 1
+  min_machines_running = 0
   processes = ['app']
 
 [[vm]]
-  memory = '2048mb'
-  cpu_kind = 'performance'
+  memory = '512mb'
+  cpu_kind = 'shared'
   cpus = 1
 
 [env]

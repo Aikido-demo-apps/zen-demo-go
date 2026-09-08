@@ -1,4 +1,4 @@
-FROM golang:1.25-alpine@sha256:8e02eb337d9e0ea459e041f1ee5eece41cbb61f1d83e7d883a3e2fb4862063fa AS builder
+FROM golang:1.26-alpine@sha256:ce864e7223ac17b1775e6fd0b4c0db580c2eb50e7953a427916379e4b92a1628 AS builder
 
 # Install build dependencies
 RUN apk add --no-cache gcc musl-dev sqlite-dev git

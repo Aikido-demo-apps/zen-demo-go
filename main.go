@@ -47,6 +47,19 @@ func main() {
 	})
 	r.Use(BlockingMiddleware())
 
+	r.GET("/api/custom-event", func(c *gin.Context) {
+		count, err := strconv.Atoi(c.DefaultQuery("count", "1"))
+		if err != nil || count < 1 || count > 100 {
+			c.String(http.StatusBadRequest, "count must be an integer between 1 and 100")
+			return
+		}
+
+		for index := 0; index < count; index++ {
+			zen.Track(c.Request.Context(), "user.login_failed")
+		}
+		c.String(http.StatusOK, "Events tracked")
+	})
+
 	// HTML routes
 	r.GET("/", func(c *gin.Context) {
 		c.File("./static/index.html")

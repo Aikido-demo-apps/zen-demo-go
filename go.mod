@@ -3,15 +3,15 @@ module zen-demo-go
 go 1.26.10
 
 require (
-	github.com/AikidoSec/firewall-go v1.2.13-beta.1
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.13-beta.1
+	github.com/AikidoSec/firewall-go v1.2.13
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.13
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
 	github.com/lib/pq v1.10.9
 )
 
 require (
-	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.13-beta.1 // indirect
+	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.13 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bytedance/gopkg v0.1.4 // indirect
 	github.com/bytedance/sonic v1.15.5 // indirect
@@ -25,7 +25,7 @@ require (
 	github.com/clipperhouse/displaywidth v0.11.0 // indirect
 	github.com/clipperhouse/uax29/v2 v2.7.0 // indirect
 	github.com/cloudwego/base64x v0.1.7 // indirect
-	github.com/ebitengine/purego v0.11.2 // indirect
+	github.com/ebitengine/purego v0.11.3 // indirect
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
 	github.com/gabriel-vasile/mimetype v1.4.16 // indirect
 	github.com/gin-contrib/sse v1.2.0 // indirect

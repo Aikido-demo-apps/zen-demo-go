@@ -12,6 +12,7 @@ func SetupTestRoutes(r *gin.Engine) {
 	r.GET("/test_ratelimiting_2", testRateLimiting2)
 	r.GET("/test_bot_blocking", testBotBlocking)
 	r.GET("/test_user_blocking", testUserBlocking)
+	r.POST("/test_llm", testLLM)
 }
 
 func testRateLimiting1(c *gin.Context) {

@@ -39,6 +39,7 @@ This demo app includes vulnerable endpoints to demonstrate Aikido's security cap
 - **Rate Limiting**: `/test_ratelimiting_*` endpoints
 - **Bot Detection**: `/test_bot_blocking` endpoint
 - **User Blocking**: `/test_user_blocking` endpoint
+- **AI Usage**: `/test_llm` endpoint with OpenAI, Anthropic, and Mistral
 
 ## Project Structure
 

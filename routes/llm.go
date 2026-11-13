@@ -10,7 +10,6 @@ import (
 	"time"
 	"unicode/utf16"
 
-	"github.com/AikidoSec/firewall-go/instrumentation/hooks"
 	anthropic "github.com/anthropics/anthropic-sdk-go"
 	anthropicoption "github.com/anthropics/anthropic-sdk-go/option"
 	"github.com/gin-gonic/gin"
@@ -72,6 +71,7 @@ func callLLM(ctx context.Context, httpClient *http.Client, provider, message str
 	switch provider {
 	case "openai":
 		client := openai.NewClient(openaioption.WithAPIKey(key), openaioption.WithHTTPClient(httpClient))
+
 		result, err := client.Responses.New(ctx, responses.ResponseNewParams{
 			Model: "gpt-4.1-mini", Instructions: openai.String(haikuPrompt),
 			Input:           responses.ResponseNewParamsInputUnion{OfString: openai.String(message)},
@@ -80,9 +80,7 @@ func callLLM(ctx context.Context, httpClient *http.Client, provider, message str
 		if err != nil {
 			return "", err
 		}
-		if result.JSON.Usage.Valid() {
-			hooks.OnAICall(provider, string(result.Model), int(result.Usage.InputTokens), int(result.Usage.OutputTokens))
-		}
+
 		return result.OutputText(), nil
 	case "anthropic":
 		client := anthropic.NewClient(anthropicoption.WithAPIKey(key), anthropicoption.WithHTTPClient(httpClient))
@@ -94,15 +92,15 @@ func callLLM(ctx context.Context, httpClient *http.Client, provider, message str
 		if err != nil {
 			return "", err
 		}
-		if result.JSON.Usage.Valid() {
-			hooks.OnAICall(provider, string(result.Model), int(result.Usage.InputTokens), int(result.Usage.OutputTokens))
-		}
+
 		var text strings.Builder
+
 		for _, content := range result.Content {
 			if content.Type == "text" {
 				text.WriteString(content.Text)
 			}
 		}
+
 		return text.String(), nil
 	default:
 		// Mistral has no official Go SDK, but supports OpenAI chat completions.
@@ -110,6 +108,7 @@ func callLLM(ctx context.Context, httpClient *http.Client, provider, message str
 			openaioption.WithAPIKey(key), openaioption.WithHTTPClient(httpClient),
 			openaioption.WithBaseURL("https://api.mistral.ai/v1/"),
 		)
+
 		result, err := client.Chat.Completions.New(ctx, openai.ChatCompletionNewParams{
 			Model: "mistral-tiny", MaxTokens: openai.Int(512),
 			Messages: []openai.ChatCompletionMessageParamUnion{
@@ -119,12 +118,11 @@ func callLLM(ctx context.Context, httpClient *http.Client, provider, message str
 		if err != nil {
 			return "", err
 		}
+
 		if len(result.Choices) == 0 {
 			return "", fmt.Errorf("mistral response has no choices")
 		}
-		if result.JSON.Usage.Valid() {
-			hooks.OnAICall(provider, result.Model, int(result.Usage.PromptTokens), int(result.Usage.CompletionTokens))
-		}
+
 		return result.Choices[0].Message.Content, nil
 	}
 }

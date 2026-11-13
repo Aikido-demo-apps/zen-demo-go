@@ -3,8 +3,8 @@ module zen-demo-go
 go 1.26.11
 
 require (
-	github.com/AikidoSec/firewall-go v1.2.14-0.20261113145747-04dfc5c75830
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.14-0.20261113145747-04dfc5c75830
+	github.com/AikidoSec/firewall-go v1.2.13
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.13
 	github.com/anthropics/anthropic-sdk-go v1.84.0
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.14-0.20261113145747-04dfc5c75830 // indirect
+	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.13 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.2 // indirect

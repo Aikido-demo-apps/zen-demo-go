@@ -3,8 +3,8 @@ module zen-demo-go
 go 1.26.11
 
 require (
-	github.com/AikidoSec/firewall-go v1.2.13
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.13
+	github.com/AikidoSec/firewall-go v1.2.14-beta.1
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.14-beta.1
 	github.com/anthropics/anthropic-sdk-go v1.84.0
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.13 // indirect
+	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.14-beta.1 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.2 // indirect
@@ -24,7 +24,7 @@ require (
 	github.com/charmbracelet/bubbletea v1.3.10 // indirect
 	github.com/charmbracelet/colorprofile v0.4.3 // indirect
 	github.com/charmbracelet/lipgloss v1.1.0 // indirect
-	github.com/charmbracelet/x/ansi v0.11.9 // indirect
+	github.com/charmbracelet/x/ansi v0.11.10 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.15 // indirect
 	github.com/charmbracelet/x/term v0.2.2 // indirect
 	github.com/clipperhouse/displaywidth v0.11.0 // indirect
@@ -80,7 +80,7 @@ require (
 	github.com/urfave/cli/v3 v3.14.0 // indirect
 	github.com/xo/terminfo v1.3.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
-	go.mongodb.org/mongo-driver/v2 v2.10.0 // indirect
+	go.mongodb.org/mongo-driver/v2 v2.10.1 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.62.0 // indirect
 	go.opentelemetry.io/otel v1.47.0 // indirect
@@ -93,11 +93,11 @@ require (
 	golang.org/x/arch v0.33.0 // indirect
 	golang.org/x/crypto v0.59.0 // indirect
 	golang.org/x/mod v0.43.0 // indirect
-	golang.org/x/net v0.62.0 // indirect
+	golang.org/x/net v0.63.0 // indirect
 	golang.org/x/sync v0.25.0 // indirect
 	golang.org/x/sys v0.50.0 // indirect
 	golang.org/x/text v0.44.0 // indirect
-	golang.org/x/tools v0.52.0 // indirect
+	golang.org/x/tools v0.53.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

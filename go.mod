@@ -3,8 +3,8 @@ module zen-demo-go
 go 1.26.11
 
 require (
-	github.com/AikidoSec/firewall-go v1.2.14-beta.1
-	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.14-beta.1
+	github.com/AikidoSec/firewall-go v1.2.14
+	github.com/AikidoSec/firewall-go/instrumentation/sources/gin-gonic/gin v1.2.14
 	github.com/anthropics/anthropic-sdk-go v1.84.0
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-migrate/migrate/v4 v4.19.0
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.14-beta.1 // indirect
+	github.com/AikidoSec/firewall-go/cmd/zen-go v1.2.14 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.2 // indirect
@@ -64,7 +64,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.4.3 // indirect
 	github.com/power-devops/perfstat v0.0.0-20260916203055-22a1a467d9f0 // indirect
 	github.com/quic-go/qpack v0.6.0 // indirect
-	github.com/quic-go/quic-go v0.65.0 // indirect
+	github.com/quic-go/quic-go v0.66.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/shirou/gopsutil/v4 v4.26.10 // indirect
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.1 // indirect
